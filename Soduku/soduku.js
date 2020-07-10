@@ -14,42 +14,13 @@ SD.prototype={
 		this.blankNum = document.getElementById('points').value;
 		this.createDoms();
 		this.createSdArr();	
-		// this.blankNum = this.setLevel()||blankNum || this.blankNum;
 		this.drawCells();
 		this.createBlank(this.blankNum);
 		this.createBlankCells();
 
 		timer=setInterval(function(){Clock_update()},1000);
 	},
-	reset:function(){
-		//重置程序。
-		this.errorArr = [];
-		$(".sdspan").removeClass('bg_red blankCell');
-		this.createSdArr();
-		// this.blankNum = this.setLevel()||this.blankNum;
-		$(".sdspan[contenteditable=true]").prop('contenteditable',false);
-		this.drawCells();
-		this.createBlank(this.blankNum);
-		this.createBlankCells();
-	},
-	again:function(){
-		//重玩本局
-		this.errorArr = [];
-		$(".sdspan").removeClass('bg_red blankCell');		
-		this.createBlankCells();
-	},
-	setLevel:function(){
-		//用户输入难度。
-		var num = prompt("请输入难度（5-50）"); 
-		if(!isNaN(num)){
-			num = parseInt(num);
-			num = num<5?5:num;
-			num = num>50?50:num;
-		}else{
-			num = false;
-		}
-		return num;
-	},
+
 	createSdArr:function(){ //生成数独数组。
 		
 		var that = this;
@@ -201,7 +172,6 @@ SD.prototype={
 		if(this.errorArr.length == 0 && done){
 			alert('Congratulations!!');
 			clearInterval(timer);
-			// document.getElementsByClassName('blankCell').ed=true;
 			$(".blankCell").attr("contenteditable","false");
 			$(".bg_red").removeClass('bg_red');
 		}else{
@@ -248,8 +218,7 @@ SD.prototype={
 		}
 		return true;
 	},
-	showErrors:function(){
-		//把错误显示出来。
+	showErrors:function(){//顯示錯誤
 		var errorArr = this.errorArr,len = this.errorArr.length,x,y,dom;
 		$(".bg_red").removeClass('bg_red');
 		for(var i =0;i<len;i++){
@@ -259,10 +228,11 @@ SD.prototype={
 			dom.addClass('bg_red');
 		}
 	},
-	createDoms:function(){ //生成9*9。
+
+	createDoms:function(){ //生成9*9表格
 		$("#cover").remove();
 		var html='<ul class="sd clearfix">';
-		String.prototype.times = String.prototype.times || function(n) { return (new Array(n+1)).join(this);}; //?????????????????
+		String.prototype.times = String.prototype.times || function(n) { return (new Array(n+1)).join(this);};
 		html = html + ('<li class="sdli">'+'<span class="sdspan"></span>'.times(9) +'</li>').times(9)+'</ul>';
 		$(".container").prepend(html);
 
@@ -300,8 +270,7 @@ function getRandom(n){
 	return Math.floor(Math.random()*n+1)
 }
 
-//两个简单数组的并集。
-function getConnect(arr1,arr2){
+function getConnect(arr1,arr2){//兩集合的聯集
 	var i,len = arr1.length,resArr = arr2.slice();
 	for(i=0;i<len;i++){
 		if($.inArray(arr1[i], arr2)<0){
@@ -311,8 +280,7 @@ function getConnect(arr1,arr2){
 	return resArr;
 }
 
-//两个简单数组差集，arr1为大数组
-function　arrMinus(arr1,arr2){
+function　arrMinus(arr1,arr2){//兩集合的差集
 	var resArr = [],len = arr1.length;
 	for(var i=0;i<len;i++){
 		if($.inArray(arr1[i], arr2)<0){
@@ -322,7 +290,7 @@ function　arrMinus(arr1,arr2){
 	return resArr;
 }
 
-function Clock_update() {
+function Clock_update() {//計時器
 	time_counter++;
 	var html="";
 	if(Math.floor(time_counter/60)>0){html+=Math.floor(time_counter/60)+' m ';}
