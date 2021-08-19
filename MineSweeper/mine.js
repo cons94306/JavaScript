@@ -13,14 +13,14 @@ var color;//呈現深淺顏色按鈕
 	
 function Menu() { //載入遊戲難度選擇畫面
 
-	document.write('<title>Mine Sweeper</title>');
+	document.write('<title>Minesweeper</title>');
 	document.write('<link rel="stylesheet" type="text/css" href="mine.css" />');
 	document.write('<link rel="icon" href="./images/flag_icon.png" type="image/x-icon" />');
 
 	document.write('<div class="wrapper">');
 	document.write('<div class="container">');
 	document.write('<form class="form">');
-	document.write('<h1>Mine Sweeper</h1>');
+	document.write('<h1>Minesweeper</h1>');
 	document.write('<button type="button" id="restart" onclick="Reset(10,10,10)" ">Easy</button><br>');
 	document.write('<button type="button" id="restart" onclick="Reset(14,14,30)" ">Medium</button><br>');
 	document.write('<button type="button" id="restart" onclick="Reset(18,18,70)" ">Hard</button>');
@@ -54,7 +54,7 @@ function Reset(h,w,m) {
 }
 
 function Init() { //遊戲初始化
-	document.write('<title>Mine Sweeper</title>');
+	document.write('<title>Minesweeper</title>');
 	document.write('<link rel="stylesheet" type="text/css" href="mine.css" />');
 	document.write('<link rel="icon" href="./images/flag_icon.png" type="image/x-icon" />');
 	document.write('<div class="wrapper">');
